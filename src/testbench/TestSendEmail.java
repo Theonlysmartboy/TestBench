@@ -8,6 +8,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Date;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Transport;
 
@@ -46,6 +48,7 @@ public class TestSendEmail {
         prop.put("mail.smtp.port", "465"); // default port is 25 but to use TLS we need port 587
         Session session = Session.getDefaultInstance(prop,
                 new javax.mail.Authenticator() {
+            @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(USERNAME, PASSWORD);
             }
@@ -73,7 +76,7 @@ public class TestSendEmail {
             Transport.send(msg, msg.getAllRecipients());
             System.out.println("Mail sent successfuly ");
         } catch (MessagingException e) {
-            e.printStackTrace();
+            Logger.getLogger(TestSendEmail.class.getName()).log(Level.SEVERE, null, e);
             return false;
         }
         return true;
