@@ -1,6 +1,8 @@
 package testbench;
 
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -95,7 +97,8 @@ public class TestSendMailWithAttachement {
             System.out.println("Sent message successfully....");
 
         } catch (MessagingException e) {
-            throw new RuntimeException(e);
+            Logger.getLogger(TestSendMailWithAttachement.class.getName()).log(Level.SEVERE, null, e);
+            return false;
         }
         return true;
     }

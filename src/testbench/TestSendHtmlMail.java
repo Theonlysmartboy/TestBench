@@ -15,6 +15,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Date;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -78,7 +80,7 @@ public class TestSendHtmlMail {
             t.close();
 
         } catch (MessagingException e) {
-            e.printStackTrace();
+            Logger.getLogger(TestSendHtmlMail.class.getName()).log(Level.SEVERE, null, e);
             return false;
         }
         return false;
